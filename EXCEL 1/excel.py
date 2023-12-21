@@ -1,9 +1,9 @@
 from openpyxl import Workbook, load_workbook
 
-fileToReadEnteriesFrom = "book1.xlsx"
-fileToWriteData = "DATA_1.xlsx"
+fileToReadEnteriesFrom = "raw_sheet.xlsx"
+fileToWriteData = "DATA.xlsx"
 
-excel_file = "book1.xlsx"
+excel_file = "DATA.xlsx"
 workbook = load_workbook(excel_file)
 worksheet = workbook.active
 
@@ -14,6 +14,20 @@ def readCell(fileName, cellvalue):
     value = worksheet[cellvalue].value
 ##    print(value)
     return value
+
+def read_A_Col_data(fileName):
+    my_temp_list = []
+    excel_file = fileName
+    workbook = load_workbook(excel_file)
+    worksheet = workbook.active
+    first_column = worksheet['A']
+    for x in range(len(first_column)): 
+##        print(first_column[x].value)
+        my_temp_list.append(first_column[x].value)
+
+    return my_temp_list
+
+#print(read_A_Col_data(fileToReadEnteriesFrom))
 
 
 def readMaxCol(fileName):
@@ -49,7 +63,7 @@ def writeToNextRow(fileName, col, Value):
     workbook.save(excel_file)
     return True
 
-def insertListToROW(list1, list2, fileName=fileToWriteData):
+def insertListToROW(list1=[], list2=[], fileName=fileToWriteData):
     excel_file = fileName
     workbook = load_workbook(excel_file)
     worksheet = workbook.active

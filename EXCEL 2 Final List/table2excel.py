@@ -2,8 +2,6 @@ from excel import *
 from bs4 import BeautifulSoup
 import pandas as pd
 
-
-
 ##table = soup.find('table', id="ctl00_ContentPlaceHolder1_grd1")
 
 def fileTOexcel_Table1():
